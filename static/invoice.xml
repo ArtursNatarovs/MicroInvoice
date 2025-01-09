@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-                <settings>
-                    <invoice>
-                        <pmsg>Pay to BestComp Ltd. NOW!!!!</pmsg>
-                        <notice>For further information please contact BestComp Ltd.</notice>
-                        <footer>Invoice was created on a computer and is valid without the signature and seal.</footer>
-                    </invoice>
-                </settings>
