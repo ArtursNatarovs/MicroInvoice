@@ -1,0 +1,193 @@
+{% extends 'newbase.html' %}
+{%block content%}
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
+              <svg class="bi"><use xlink:href="#calendar3"></use></svg>
+              This week
+            </button>
+          </div>
+        </div>
+
+        <canvas class="my-4 w-100" id="myChart"  style="display: block; box-sizing: border-box; height: 400px; width: 642px;"></canvas>
+
+        <h2>Section title</h2>
+        <div class="table-responsive small">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Header</th>
+                <th scope="col">Header</th>
+                <th scope="col">Header</th>
+                <th scope="col">Header</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1,001</td>
+                <td>random</td>
+                <td>data</td>
+                <td>placeholder</td>
+                <td>text</td>
+              </tr>
+              <tr>
+                <td>1,002</td>
+                <td>placeholder</td>
+                <td>irrelevant</td>
+                <td>visual</td>
+                <td>layout</td>
+              </tr>
+              <tr>
+                <td>1,003</td>
+                <td>data</td>
+                <td>rich</td>
+                <td>dashboard</td>
+                <td>tabular</td>
+              </tr>
+              <tr>
+                <td>1,003</td>
+                <td>information</td>
+                <td>placeholder</td>
+                <td>illustrative</td>
+                <td>data</td>
+              </tr>
+              <tr>
+                <td>1,004</td>
+                <td>text</td>
+                <td>random</td>
+                <td>layout</td>
+                <td>dashboard</td>
+              </tr>
+              <tr>
+                <td>1,005</td>
+                <td>dashboard</td>
+                <td>irrelevant</td>
+                <td>text</td>
+                <td>placeholder</td>
+              </tr>
+              <tr>
+                <td>1,006</td>
+                <td>dashboard</td>
+                <td>illustrative</td>
+                <td>rich</td>
+                <td>data</td>
+              </tr>
+              <tr>
+                <td>1,007</td>
+                <td>placeholder</td>
+                <td>tabular</td>
+                <td>information</td>
+                <td>irrelevant</td>
+              </tr>
+              <tr>
+                <td>1,008</td>
+                <td>random</td>
+                <td>data</td>
+                <td>placeholder</td>
+                <td>text</td>
+              </tr>
+              <tr>
+                <td>1,009</td>
+                <td>placeholder</td>
+                <td>irrelevant</td>
+                <td>visual</td>
+                <td>layout</td>
+              </tr>
+              <tr>
+                <td>1,010</td>
+                <td>data</td>
+                <td>rich</td>
+                <td>dashboard</td>
+                <td>tabular</td>
+              </tr>
+              <tr>
+                <td>1,011</td>
+                <td>information</td>
+                <td>placeholder</td>
+                <td>illustrative</td>
+                <td>data</td>
+              </tr>
+              <tr>
+                <td>1,012</td>
+                <td>text</td>
+                <td>placeholder</td>
+                <td>layout</td>
+                <td>dashboard</td>
+              </tr>
+              <tr>
+                <td>1,013</td>
+                <td>dashboard</td>
+                <td>irrelevant</td>
+                <td>text</td>
+                <td>visual</td>
+              </tr>
+              <tr>
+                <td>1,014</td>
+                <td>dashboard</td>
+                <td>illustrative</td>
+                <td>rich</td>
+                <td>data</td>
+              </tr>
+              <tr>
+                <td>1,015</td>
+                <td>random</td>
+                <td>tabular</td>
+                <td>information</td>
+                <td>text</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+<!-- <div class="container">
+  <form action="{{url_for('invoice01')}}" method="POST">
+  <div class="row justify-content-around">
+
+      <div class="col-4">
+        {% if users %}
+        {% for user in users %}
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="radio" name="userId" value="{{user.id}}" aria-label="Radio button for following text input">
+            </div>
+          </div>
+          <span class="input-group-text">{{user.name}} {{user.last_name}}</span>
+        </div>
+        {% endfor %}
+        {% endif%}
+      </div>
+
+      <div class="col-4">
+        {% for salon in salons %}
+        <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="radio" name="salonId" value="{{salon.id}}" aria-label="Radio button for following text input">
+          </div>
+        </div>
+        <span class="input-group-text">{{salon.name}}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <br>
+    <input type="submit" value="Send Invoice" class="btn btn-secondary btn-lg btn-block mx-auto" style="width:20%;">
+    </form>
+</div> -->
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='chart.js')}}"></script>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"><script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script></script>
+
+{% endblock %}

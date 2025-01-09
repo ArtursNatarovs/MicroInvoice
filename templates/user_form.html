@@ -1,0 +1,30 @@
+{% extends "newbase.html" %}
+{% block content %}
+<div class="container">
+  <form action="{{url_for('update_tenant02')}}" method="POST">
+    <div class="row">
+      <div class="col-sm">
+        <label for="#">Customers ID: {{user.id}}</label> <br>
+        <div class="input-group-prepend">
+          <input type="hidden" name="userId" value="{{user.id}}">
+          <span class="input-group-text" id="inputGroupFileAddon01">Customers Name</span>
+          <input class="form-control" type="text" name="firstName" value="{{user.name}}">
+          <input class="form-control" type="text" name="lastName" value="{{user.last_name}}">
+        </div>
+         <br>
+        <label for="">Customers Addresse </label> <br>
+        <input class="form-control" type="text" name="line1" value="{{user.line1}}"> <br>
+        <input class="form-control" type="text" name="line2" value="{{user.line2}}"> <br>
+        <input class="form-control" type="text" name="city" value="{{user.city}}"> <br>
+        <label for="postcode">Post code</label>
+        <input class="form-control" type="text" name="postcode" value="{{user.postCode}}"> <br>
+        <input class="form-control" type="text" name="email" value="{{user.email}}">
+        <label for="p_number">Phone number</label>
+        <input class="form-control" type="text" name="p_number" value="{{user.p_number}}"> <br>
+      </div>
+    </div>
+
+    <input type="submit" value="update" class="btn btn-success float-right">
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,179 @@
+{% extends "settings.html" %}
+{% block settingPage %}
+<h2 class="mb-4">Business Settings</h2>
+{% if Data == None %}
+<form method="POST"  class="border p-4 rounded bg-light">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control", placeholder="Enter salon name") }}
+        {% for error in form.name.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control", placeholder="Enter email") }}
+        {% for error in form.email.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.p_number.label(class="form-label") }}
+        {{ form.p_number(class="form-control", placeholder="Enter phone number") }}
+        {% for error in form.p_number.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.line1.label(class="form-label") }}
+        {{ form.line1(class="form-control", placeholder="Enter address line 1") }}
+        {% for error in form.line1.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.line2.label(class="form-label") }}
+        {{ form.line2(class="form-control", placeholder="Enter address line 2") }}
+        {% for error in form.line2.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.postCode.label(class="form-label") }}
+        {{ form.postCode(class="form-control", placeholder="Enter postcode") }}
+        {% for error in form.postCode.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.city.label(class="form-label") }}
+        {{ form.city(class="form-control", placeholder="Enter city") }}
+        {% for error in form.city.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.logo.label(class="form-label") }}
+        {{ form.logo(class="form-control", placeholder="Enter logo URL") }}
+        {% for error in form.logo.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.sortCode.label(class="form-label") }}
+        {{ form.sortCode(class="form-control", placeholder="Sort Code") }}
+        {% for error in form.sortCode.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.accountNumber.label(class="form-label") }}
+        {{ form.accountNumber(class="form-control", placeholder="Account Number") }}
+        {% for error in form.accountNumber.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">{{ form.submit.label }}</button>
+</form>
+{%else%}
+<form method="POST"  class="border p-4 rounded bg-light">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control", Value=Data.name) }}
+        {% for error in form.name.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+
+    <div class="mb-3">
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control", Value=Data.email) }}
+        {% for error in form.email.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.p_number.label(class="form-label") }}
+        {{ form.p_number(class="form-control", Value=Data.p_number) }}
+        {% for error in form.p_number.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.line1.label(class="form-label") }}
+        {{ form.line1(class="form-control", Value=Data.line1) }}
+        {% for error in form.line1.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.line2.label(class="form-label") }}
+        {{ form.line2(class="form-control", Value=Data.line2) }}
+        {% for error in form.line2.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.postCode.label(class="form-label") }}
+        {{ form.postCode(class="form-control", Value=Data.postCode) }}
+        {% for error in form.postCode.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.city.label(class="form-label") }}
+        {{ form.city(class="form-control", Value=Data.city) }}
+        {% for error in form.city.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.logo.label(class="form-label") }}
+        {{ form.logo(class="form-control", Value=Data.logo) }}
+        {% for error in form.logo.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.sortCode.label(class="form-label") }}
+        {{ form.sortCode(class="form-control", value=Data.sortCode) }}
+        {% for error in form.sortCode.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.accountNumber.label(class="form-label") }}
+        {{ form.accountNumber(class="form-control", value=Data.accountNumber) }}
+        {% for error in form.accountNumber.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">{{ form.submit.label }}</button>
+</form>
+{%endif%}
+<script src="{{ url_for('static', filename='settings.js') }}"></script>
+{% endblock %}
