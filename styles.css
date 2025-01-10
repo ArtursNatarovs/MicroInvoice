@@ -131,6 +131,34 @@ nav h1 {
     color: #2d3e50;
 }
 
+/* Screenshots Section */
+.screenshots {
+    background-color: #fff;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.screenshots h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2d3e50;
+}
+
+.screenshot-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.screenshot-gallery img {
+    max-width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Contact Section */
 .contact {
     background-color: #fff;
@@ -143,30 +171,6 @@ nav h1 {
     text-align: center;
     margin-bottom: 1.5rem;
     color: #2d3e50;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #2d3e50;
-    font-weight: bold;
-}
-
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.form-group input:focus, .form-group textarea:focus {
-    outline: none;
-    border-color: #004bb5;
 }
 
 button.btn {
