@@ -19,6 +19,7 @@ from wtforms.validators import DataRequired
 import pdfkit
 from tempfile import NamedTemporaryFile
 import xml.etree.ElementTree as ET
+from handler import add_logo_pic
 
 
 login_manager = LoginManager()
@@ -498,6 +499,8 @@ def business_settings():
 
 
     if form.validate_on_submit():
+
+
         if not businesData:
             business = Salon(name = form.name.data,
                             email = form.email.data,
@@ -506,26 +509,35 @@ def business_settings():
                             line2 = form.line2.data,
                             postCode = form.postCode.data,
                             city = form.city.data,
-                            logo = form.logo.data,
+                            # logo = form.logo.data,
                             sortCode = form.sortCode.data,
                             accountNumber = form.accountNumber.data)
 
+
             db.session.add(business)
-            db.session.commit()
+            if form.logo.data:
+                pic = add_logo_pic(form.logo.data,business.id)
+                business.logo = pic
+
 
         else:
             businesData.name = form.name.data
-            businesData.email = form.email.data,
-            businesData.p_number = form.p_number.data,
-            businesData.line1 = form.line1.data,
-            businesData.line2 = form.line2.data,
-            businesData.postCode = form.postCode.data,
-            businesData.city = form.city.data,
-            businesData.logo = form.logo.data,
-            businesData.sortCode = form.sortCode.data,
+            businesData.email = form.email.data
+            businesData.p_number = form.p_number.data
+            businesData.line1 = form.line1.data
+            businesData.line2 = form.line2.data
+            businesData.postCode = form.postCode.data
+            businesData.city = form.city.data
+            # businesData.logo = form.logo.data
+            businesData.sortCode = form.sortCode.data
             businesData.accountNumber = form.accountNumber.data
-            db.session.commit()
-        flash("Business saved successfully!", "success")
+
+            if form.logo.data:
+
+                pic = add_logo_pic(form.logo.data,businesData.id)
+                businesData.logo = pic
+        db.session.commit()
+        print("Business saved successfully!", "success")
         return redirect(url_for('settings'))
 
     return render_template('business_settings.html', form=form, Data=Data, page="settings", subButtons=settingsSubButtons)

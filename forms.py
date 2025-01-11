@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-# from invoicer import Operator
+from flask_wtf.file import FileField,FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, EmailField
 from wtforms.validators import DataRequired,Email,EqualTo,Length
 from wtforms import ValidationError
@@ -38,7 +38,7 @@ class BusinessForm(FlaskForm):
     line2 = StringField("Address Line 2", validators=[Length(max=255)])
     postCode = StringField("Postcode", validators=[DataRequired(), Length(max=20)])
     city = StringField("City", validators=[DataRequired(), Length(max=255)])
-    logo = StringField("Logo URL", validators=[Length(max=255)])
+    logo = FileField('Profile Logo',validators=[FileAllowed(['jpg','png'])])
     sortCode = StringField("Sort Code", validators=[DataRequired(), Length(max=20)])
     accountNumber = StringField("Account Number", validators=[DataRequired(), Length(max=20)])
     submit = SubmitField("Save")

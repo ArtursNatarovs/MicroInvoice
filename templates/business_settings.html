@@ -1,8 +1,13 @@
 {% extends "settings.html" %}
 {% block settingPage %}
 <h2 class="mb-4">Business Settings</h2>
+<div class="jumbotron">
+    <div align='center'>
+      <img align='center' src="{{url_for('static',filename='logo_pics/'+Data.logo)}}">
+    </div>
+  </div>
 {% if Data == None %}
-<form method="POST"  class="border p-4 rounded bg-light">
+<form method="POST"  class="border p-4 rounded bg-light" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
 
     <div class="mb-3">
@@ -88,7 +93,7 @@
     <button type="submit" class="btn btn-primary w-100">{{ form.submit.label }}</button>
 </form>
 {%else%}
-<form method="POST"  class="border p-4 rounded bg-light">
+<form method="POST"  class="border p-4 rounded bg-light" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
 
     <div class="mb-3">
