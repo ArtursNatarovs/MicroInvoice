@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 from flask_mail import Mail, Message
 import os
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func, extract
 from flask_migrate import Migrate
 from flask_login import LoginManager, login_user,login_required,logout_user
 from forms import LoginForm, RegistrationForm, BusinessForm
@@ -20,6 +21,7 @@ import pdfkit
 from tempfile import NamedTemporaryFile
 import xml.etree.ElementTree as ET
 from handler import add_logo_pic
+from datetime import datetime, timedelta
 
 
 login_manager = LoginManager()
@@ -470,6 +472,60 @@ settingsSubButtons = [Button(name='Operators',id="operatorsButton"),
                     Button(name='Email',id="emailButton",url='email_settings'),
                     Button(name='Invoice',id="invoiceButton",url='invoice_settings'),
                     Button(name='Business',id="businessButton",url='business_settings')]
+
+@app.route('/get-sales-data', methods=['GET'])
+def get_sales_data():
+    # Calculate the date range for the last 5 months
+    today = datetime.today()
+    five_months_ago = today - timedelta(days=5 * 30)  # Approximation for 5 months
+
+    # Query invoices within the date range
+    invoices = Invoices.query.filter(Invoices.date >= five_months_ago.strftime('%Y-%m-%d')).all()
+
+    # Aggregate sales data by month
+    sales_by_month = {}
+    for invoice in invoices:
+        # Parse the date to extract the month
+        month = datetime.strptime(invoice.date, '%Y-%m-%d').strftime('%Y-%m')
+
+        # Parse the JSON text to calculate the total sales for this invoice
+        items = json.loads(invoice.text)
+        total = sum(item[4] for item in items)  # Extract the 5th value from each sub-array
+
+        # Add the total to the corresponding month
+        if month in sales_by_month:
+            sales_by_month[month] += total
+        else:
+            sales_by_month[month] = total
+
+    # Prepare the data for the frontend
+    labels = sorted(sales_by_month.keys())  # Sort the months chronologically
+    sales = [sales_by_month[month] for month in labels]
+
+    return jsonify({'labels': labels, 'sales': sales})
+
+@app.route('/get-services', methods=['GET'])
+def get_services():
+    # Query all invoice texts
+    invoices = Invoices.query.all()
+
+    # Extract services from the text column
+    services = []
+    for invoice in invoices:
+        items = json.loads(invoice.text)
+        for item in items:
+            services.append({
+                "name": item[0],  # Service name
+                "price": item[1],  # Price
+                "description": item[2],  # Description
+                "quantity": item[3],  # Quantity
+                "total": item[4],  # Total
+            })
+
+    return jsonify(services)
+
+
+
 
 @app.route('/settings')
 def settings():
